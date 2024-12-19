@@ -27,7 +27,7 @@ public class StudioService {
         return studioRepository.findAll();
     }
 
-    public Mono<Studio> updateStudioById(String id, Studio studio) {
+    public Mono<? extends Studio> updateStudioById(String id, Studio studio) {
         return studioRepository.findById(id)
                 .map(existingStudio -> new Studio(existingStudio.getId(), studio.getName(), studio.getCountry()
                         , studio.getFounded(), studio.getGames()))

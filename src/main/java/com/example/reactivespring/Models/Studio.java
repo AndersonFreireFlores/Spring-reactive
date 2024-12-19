@@ -3,9 +3,9 @@ package com.example.reactivespring.Models;
 import com.mongodb.lang.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import reactor.core.publisher.Flux;
 
 import java.util.Date;
+import java.util.List;
 
 @Document
 public class Studio {
@@ -20,12 +20,12 @@ public class Studio {
 
     private Date founded;
 
-    private Flux<Game> games;
+    private List<String> games;
 
     public Studio() {
     }
 
-    public Studio(String id, String name, String country, Date founded, Flux<Game> games) {
+    public Studio(String id, String name, String country, Date founded, List games) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -65,11 +65,11 @@ public class Studio {
         this.founded = founded;
     }
 
-    public Flux<Game> getGames() {
+    public List getGames() {
         return games;
     }
 
-    public void setGames(Flux<Game> games) {
+    public void setGames(List games) {
         this.games = games;
     }
 }
