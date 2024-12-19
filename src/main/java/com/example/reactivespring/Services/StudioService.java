@@ -15,26 +15,26 @@ public class StudioService {
         this.studioRepository = studioRepository;
     }
 
-    Mono<Studio> saveStudio(Studio studio) {
+    public Mono<Studio> saveStudio(Studio studio) {
         return studioRepository.save(studio);
     }
 
-    Mono<Studio> getStudioById(String id) {
+    public Mono<Studio> getStudioById(String id) {
         return studioRepository.findById(id);
     }
 
-    Flux<Studio> getAllStudios() {
+    public Flux<Studio> getAllStudios() {
         return studioRepository.findAll();
     }
 
-    Mono<Studio> updateStudioById(String id, Studio studio) {
+    public Mono<Studio> updateStudioById(String id, Studio studio) {
         return studioRepository.findById(id)
                 .map(existingStudio -> new Studio(existingStudio.getId(), studio.getName(), studio.getCountry()
                         , studio.getFounded(), studio.getGames()))
                 .flatMap(studioRepository::save);
     }
 
-    Mono<Void> deleteStudioById(String id) {
+    public Mono<Void> deleteStudioById(String id) {
         return studioRepository.deleteById(id);
     }
 }

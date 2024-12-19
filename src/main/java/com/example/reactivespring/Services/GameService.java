@@ -15,26 +15,26 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    Mono<Game> saveGame(Game game) {
+    public Mono<Game> saveGame(Game game) {
         return gameRepository.save(game);
     }
 
-    Mono<Game> getGameById(String id) {
+    public Mono<Game> getGameById(String id) {
         return gameRepository.findById(id);
     }
 
-    Flux<Game> getAllGames() {
+    public Flux<Game> getAllGames() {
         return gameRepository.findAll();
     }
 
-    Mono<Game> updateGameById(String id, Game game) {
+    public Mono<Game> updateGameById(String id, Game game) {
         return gameRepository.findById(id)
                 .map(existingGame -> new Game(existingGame.getId(), game.getName(), game.getGenre()
                         , game.getPlatform(), game.getStudio()))
                 .flatMap(gameRepository::save);
     }
 
-    Mono<Void> deleteGameById(String id) {
+    public Mono<Void> deleteGameById(String id) {
         return gameRepository.deleteById(id);
     }
 }
